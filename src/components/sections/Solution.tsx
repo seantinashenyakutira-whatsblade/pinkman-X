@@ -13,11 +13,13 @@ const features = [
   { icon: Shield, title: 'Risk Management Tools', desc: 'Position sizing, risk-reward calculators, and portfolio-level exposure tracking.' },
 ]
 
+const r = ['reveal-tilt', 'reveal-zoom', 'reveal-slide-up', 'reveal-slide-left', 'reveal-slide-right']
+
 export default function Solution() {
   return (
     <section className="relative py-20 px-4" id="features">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 reveal">
+        <div className="text-center mb-12 reveal reveal-slide-up">
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">The Solution</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             One Platform.{' '}
@@ -26,7 +28,7 @@ export default function Solution() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((f, i) => (
-            <Card key={f.title} className={`p-5 card-hover glow-gold reveal reveal-delay-${(i % 6) + 1}`}>
+            <Card key={f.title} className={`p-5 card-hover glow-gold reveal ${r[i % 5]} reveal-delay-${(i % 5) + 1}`}>
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-9 h-9 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                   <f.icon className="w-4 h-4 text-gold" />

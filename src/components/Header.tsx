@@ -17,9 +17,7 @@ export default function Header() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-dark-950/85 backdrop-blur-xl border-b border-border/30' : 'bg-transparent'}`}>
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center">
-            <span className="text-sm font-black text-gold">Px</span>
-          </div>
+          <img src="/pinkmanx-logo.jpeg" alt="Pinkman X" className="w-8 h-8 rounded-lg object-cover" />
           <span className="font-bold text-white text-sm">Pinkman X</span>
         </a>
         <nav className="hidden md:flex items-center gap-6">

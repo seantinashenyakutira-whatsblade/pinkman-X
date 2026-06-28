@@ -10,11 +10,13 @@ const sessions = [
   { icon: ClipboardList, time: 'Custom', name: 'Personal Trading Routine', desc: 'Build and save your personalized daily trading schedule.' },
 ]
 
+const r = ['reveal-tilt', 'reveal-zoom', 'reveal-slide-up', 'reveal-slide-left', 'reveal-slide-right']
+
 export default function TradingTimetable() {
   return (
     <section className="relative py-20 px-4" id="timetable">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 reveal">
+        <div className="text-center mb-12 reveal reveal-slide-up">
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">Trading Timetable</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             Trade With{' '}
@@ -24,7 +26,7 @@ export default function TradingTimetable() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sessions.map((s, i) => (
-            <Card key={s.name} className={`p-5 card-hover glow-gold reveal reveal-delay-${(i % 6) + 1}`}>
+            <Card key={s.name} className={`p-5 card-hover glow-gold reveal ${r[i % 5]} reveal-delay-${(i % 5) + 1}`}>
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
                   <s.icon className="w-5 h-5 text-gold" />

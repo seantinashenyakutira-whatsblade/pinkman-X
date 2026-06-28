@@ -63,7 +63,7 @@ export default function Hero() {
         </div>
 
           <div className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto reveal visible reveal-delay-2">
-          <div className="rounded-2xl bg-dark-800/80 border border-border/60 p-6 sm:p-8 backdrop-blur-sm card-hover glow-gold">
+          <div className="rounded-2xl bg-black/60 backdrop-blur-xl border border-gold/10 p-6 sm:p-8 card-hover glow-gold">
             {status === 'success' ? (
               <div className="text-center py-6">
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
@@ -77,21 +77,21 @@ export default function Hero() {
                 <div className="text-center mb-2">
                   <p className="text-lg font-bold text-white">Reserve Your Spot</p>
                 </div>
-                <input value={f.full_name} onChange={(e) => setF({ ...f, full_name: e.target.value })} placeholder="Full Name" className="w-full px-4 py-2.5 rounded-lg bg-dark-900 border border-border text-white text-sm placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300" />
-                <input value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} type="email" placeholder="Email Address" className="w-full px-4 py-2.5 rounded-lg bg-dark-900 border border-border text-white text-sm placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300" />
-                <input value={f.whatsapp} onChange={(e) => setF({ ...f, whatsapp: e.target.value })} placeholder="WhatsApp Number" className="w-full px-4 py-2.5 rounded-lg bg-dark-900 border border-border text-white text-sm placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300" />
+                <input value={f.full_name} onChange={(e) => setF({ ...f, full_name: e.target.value })} placeholder="Full Name" className="w-full px-4 py-2.5 rounded-lg bg-black/80 border border-gold/15 text-white text-sm placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300" />
+                <input value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} type="email" placeholder="Email Address" className="w-full px-4 py-2.5 rounded-lg bg-black/80 border border-gold/15 text-white text-sm placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300" />
+                <input value={f.whatsapp} onChange={(e) => setF({ ...f, whatsapp: e.target.value })} placeholder="WhatsApp Number" className="w-full px-4 py-2.5 rounded-lg bg-black/80 border border-gold/15 text-white text-sm placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300" />
                 <div className="grid grid-cols-2 gap-3">
-                  <select value={f.experience_level} onChange={(e) => setF({ ...f, experience_level: e.target.value })} className="w-full px-3 py-2.5 rounded-lg bg-dark-900 border border-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300">
+                  <select value={f.experience_level} onChange={(e) => setF({ ...f, experience_level: e.target.value })} className="w-full px-3 py-2.5 rounded-lg bg-black/80 border border-gold/15 text-white text-sm focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300">
                     <option value="">Experience</option>
                     {expOptions.map((o) => <option key={o} value={o}>{o}</option>)}
                   </select>
-                  <select value={f.interest} onChange={(e) => setF({ ...f, interest: e.target.value })} className="w-full px-3 py-2.5 rounded-lg bg-dark-900 border border-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300">
+                  <select value={f.interest} onChange={(e) => setF({ ...f, interest: e.target.value })} className="w-full px-3 py-2.5 rounded-lg bg-black/80 border border-gold/15 text-white text-sm focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all duration-300">
                     <option value="">Interest</option>
                     {intOptions.map((o) => <option key={o} value={o}>{o}</option>)}
                   </select>
                 </div>
                 <label className="flex items-start gap-2.5 cursor-pointer group">
-                  <input type="checkbox" checked={f.marketing_consent} onChange={(e) => setF({ ...f, marketing_consent: e.target.checked })} className="mt-0.5 w-4 h-4 rounded border-border bg-dark-900 text-gold focus:ring-gold/25 transition-all duration-200" />
+                  <input type="checkbox" checked={f.marketing_consent} onChange={(e) => setF({ ...f, marketing_consent: e.target.checked })} className="mt-0.5 w-4 h-4 rounded border-gold/15 bg-black/80 text-gold focus:ring-gold/25 transition-all duration-200" />
                   <span className="text-xs text-muted-light group-hover:text-white transition-colors duration-200">I agree to receive product updates, early access offers, and trading insights.</span>
                 </label>
                 {status === 'error' && <div className="p-3 rounded-lg bg-red-500/5 border border-red-500/20 text-red-400 text-xs animate-fade-in">{msg}</div>}

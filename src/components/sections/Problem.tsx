@@ -10,11 +10,13 @@ const tools = [
   { icon: Bot, label: 'AUTOMATION', desc: 'Complex bots requiring coding' },
 ]
 
+const r = ['reveal-tilt', 'reveal-zoom', 'reveal-slide-up', 'reveal-slide-left', 'reveal-slide-right']
+
 export default function Problem() {
   return (
     <section className="relative py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 reveal">
+        <div className="text-center mb-12 reveal reveal-slide-up">
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">The Problem</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             Traders Are Using{' '}
@@ -24,7 +26,7 @@ export default function Problem() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {tools.map((t, i) => (
-            <Card key={t.label} className={`p-5 text-center sm:text-left sm:flex sm:items-start sm:gap-4 card-hover glow-gold reveal reveal-delay-${(i % 6) + 1}`}>
+            <Card key={t.label} className={`p-5 text-center sm:text-left sm:flex sm:items-start sm:gap-4 card-hover glow-gold reveal ${r[i % 5]} reveal-delay-${(i % 5) + 1}`}>
               <div className="w-9 h-9 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0 sm:mt-0.5">
                 <t.icon className="w-4 h-4 text-gold" />
               </div>
@@ -35,8 +37,8 @@ export default function Problem() {
             </Card>
           ))}
         </div>
-        <div className="mt-8 text-center reveal reveal-delay-3">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gold/5 border border-gold/15 card-hover glow-gold">
+        <div className="mt-8 text-center reveal reveal-zoom reveal-delay-3">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-black/60 backdrop-blur-xl border border-gold/15 card-hover glow-gold">
             <Zap className="w-4 h-4 text-gold shrink-0" />
             <span className="text-xs text-gold font-medium">One workspace. One workflow.</span>
           </div>

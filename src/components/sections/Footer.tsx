@@ -4,9 +4,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center mb-6">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-7 h-7 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center">
-              <span className="text-xs font-black text-gold">Px</span>
-            </div>
+            <img src="/pinkmanx-logo.jpeg" alt="Pinkman X" className="w-7 h-7 rounded-lg object-cover" />
             <span className="font-bold text-white text-sm">Pinkman X</span>
           </div>
           <p className="text-[10px] text-muted tracking-widest uppercase">AI Trading Intelligence</p>

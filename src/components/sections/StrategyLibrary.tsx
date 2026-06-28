@@ -29,11 +29,13 @@ function MiniChart() {
   )
 }
 
+const r = ['reveal-tilt', 'reveal-zoom', 'reveal-slide-up', 'reveal-slide-left', 'reveal-slide-right']
+
 export default function StrategyLibrary({ onToast }: StrategyProps) {
   return (
     <section className="relative py-20 px-4" id="strategies">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 reveal">
+        <div className="text-center mb-12 reveal reveal-slide-up">
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">Strategy Library</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             AI-Powered Strategies{' '}
@@ -43,7 +45,7 @@ export default function StrategyLibrary({ onToast }: StrategyProps) {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {strategies.map((s, i) => (
-            <div key={s.name} className={`card-hover reveal reveal-delay-${(i % 6) + 1}`} onClick={() => onToast('This strategy will be available during beta.')}>
+            <div key={s.name} className={`card-hover reveal ${r[i % 5]} reveal-delay-${(i % 5) + 1}`} onClick={() => onToast('This strategy will be available during beta.')}>
               <Card className={`p-4 border-l-2 ${s.color} h-full`}>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] font-semibold tracking-wider text-gold uppercase">{s.cat}</span>

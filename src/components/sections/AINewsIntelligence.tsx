@@ -22,14 +22,14 @@ export default function AINewsIntelligence() {
           </p>
           <ul className="space-y-3">
             {['AI-classified high / medium / low impact', 'Currency & asset exposure breakdown', 'Volatility and spread risk windows', 'No automated trading recommendations'].map((item, i) => (
-              <li key={item} className={`flex items-start gap-3 text-sm text-muted-light/80 reveal reveal-delay-${i + 1}`}>
+              <li key={item} className={`flex items-start gap-3 text-sm text-muted-light/80 reveal ${['reveal-slide-left', 'reveal-slide-right', 'reveal-zoom', 'reveal-tilt'][i]} reveal-delay-${i + 1}`}>
                 <span className="w-1.5 h-1.5 rounded-full bg-gold mt-1.5 shrink-0" />
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <div className="reveal reveal-delay-2">
+        <div className="reveal reveal-slide-right reveal-delay-2">
           <Card className="p-5 card-hover glow-gold">
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-semibold text-white tracking-wider uppercase">AI News Feed</span>
@@ -40,7 +40,7 @@ export default function AINewsIntelligence() {
             </div>
             <div className="space-y-3">
               {news.map((item, i) => (
-                <div key={item.title} className={`flex items-center justify-between py-2 border-b border-border/40 last:border-0 reveal reveal-delay-${i + 1}`}>
+                <div key={item.title} className={`flex items-center justify-between py-2 border-b border-gold/10 last:border-0 reveal ${['reveal-slide-right', 'reveal-tilt', 'reveal-zoom', 'reveal-slide-left'][i]} reveal-delay-${i + 1}`}>
                   <div>
                     <div className="text-sm font-medium text-white">{item.title}</div>
                     <div className="text-[10px] text-muted mt-0.5">{item.time}</div>

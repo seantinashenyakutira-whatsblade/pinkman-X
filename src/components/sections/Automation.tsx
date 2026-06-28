@@ -5,7 +5,7 @@ export default function Automation() {
   return (
     <section className="relative py-20 px-4" id="automation">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-        <div className="reveal">
+        <div className="reveal reveal-slide-up">
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">Automation</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             Automation When{' '}
@@ -16,7 +16,7 @@ export default function Automation() {
           </p>
           <div className="flex flex-wrap gap-2 mb-6">
             {['Scalping', 'Day Trading', 'Swing Trading', 'Multi-Timeframe'].map((t) => (
-              <span key={t} className="px-3 py-1.5 rounded-lg text-[10px] font-semibold bg-gold/5 text-gold border border-gold/15 uppercase tracking-wider card-hover">{t}</span>
+              <span key={t} className="px-3 py-1.5 rounded-lg text-[10px] font-semibold bg-black/60 backdrop-blur-xl text-gold border border-gold/15 uppercase tracking-wider card-hover">{t}</span>
             ))}
           </div>
           <div className="flex items-start gap-2 p-3 rounded-lg bg-amber/5 border border-amber/15 glow-gold">
@@ -24,8 +24,8 @@ export default function Automation() {
             <p className="text-xs text-amber/80">Automation is optional and should be tested on demo first.</p>
           </div>
         </div>
-        <div className="reveal reveal-delay-2">
-          <Card className="p-6 card-hover">
+        <div className="reveal reveal-tilt reveal-delay-2">
+          <Card className="p-6 card-hover glow-gold">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="text-xs font-semibold text-white">MT5 Live Bridge</p>

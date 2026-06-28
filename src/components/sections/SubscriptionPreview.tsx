@@ -20,11 +20,13 @@ const plans = [
   },
 ]
 
+const r = ['reveal-tilt', 'reveal-zoom', 'reveal-slide-up', 'reveal-slide-left']
+
 export default function SubscriptionPreview() {
   return (
     <section className="relative py-20 px-4" id="pricing">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 reveal">
+        <div className="text-center mb-12 reveal reveal-slide-up">
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">Pricing</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             Choose Your Level{' '}
@@ -34,7 +36,7 @@ export default function SubscriptionPreview() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {plans.map((p, i) => (
-            <div key={p.name} className={`card-hover reveal reveal-delay-${(i % 4) + 1}`}>
+            <div key={p.name} className={`card-hover reveal ${r[i % 4]} reveal-delay-${i + 1}`}>
               <Card highlight={p.popular} className={`p-6 flex flex-col h-full ${p.popular ? 'relative border-gold/40 glow-gold' : ''}`}>
                 {p.popular && (
                   <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-gold text-dark-950 text-[10px] font-bold rounded-full tracking-wider whitespace-nowrap">
