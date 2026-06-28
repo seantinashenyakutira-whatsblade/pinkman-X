@@ -23,7 +23,7 @@ export default function StrategyLibrary({ onToast }: StrategyLibraryProps) {
     <section className="relative py-24 px-4" id="strategies">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-neon text-sm font-semibold tracking-widest uppercase">Strategy Library</span>
+          <span className="text-gold text-sm font-semibold tracking-widest uppercase">Strategy Library</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">AI-Powered Trading Strategies</h2>
           <p className="text-muted-light max-w-2xl mx-auto">
             Prebuilt strategies designed by traders and optimized by AI. Ready for backtesting, paper trading, and future MT5 automation.
@@ -45,7 +45,7 @@ export default function StrategyLibrary({ onToast }: StrategyLibraryProps) {
               className="group"
             >
               <div className="flex items-start justify-between mb-3">
-                <Badge variant={s.access === 'Elite' ? 'gold' : s.access === 'Pro' ? 'cyan' : 'neon'}>
+                <Badge variant={s.access === 'Elite' ? 'gold' : s.access === 'Pro' ? 'amber' : 'gold'}>
                   {s.access}
                 </Badge>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-dark-700 text-muted-light border border-border">
@@ -61,8 +61,8 @@ export default function StrategyLibrary({ onToast }: StrategyLibraryProps) {
                   </>
                 ) : (
                   <>
-                    <svg className="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" /></svg>
-                    <span className="text-xs text-neon">Free at Launch</span>
+                    <svg className="w-4 h-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" /></svg>
+                    <span className="text-xs text-gold">Free at Launch</span>
                   </>
                 )}
               </div>

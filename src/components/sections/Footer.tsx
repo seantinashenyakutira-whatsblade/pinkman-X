@@ -15,8 +15,8 @@ export default function Footer() {
         <div className="grid sm:grid-cols-3 gap-10 mb-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-neon/10 border border-neon/20 flex items-center justify-center">
-                <span className="text-sm font-black text-neon">Px</span>
+              <div className="w-8 h-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center">
+                <span className="text-sm font-black text-gold">Px</span>
               </div>
               <span className="font-bold text-white">Pinkman X</span>
             </div>
@@ -32,7 +32,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {links.map((l) => (
                 <li key={l.label}>
-                  <ScrollLink href={l.href} className="text-sm text-muted hover:text-neon transition-colors">
+                  <ScrollLink href={l.href} className="text-sm text-muted hover:text-gold transition-colors">
                     {l.label}
                   </ScrollLink>
                 </li>

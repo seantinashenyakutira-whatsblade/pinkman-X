@@ -1,22 +1,11 @@
 import Card from '../ui/Card'
 
-const tools = [
-  { icon: '📊', label: 'Charting Platforms' },
-  { icon: '📰', label: 'News Feeds' },
-  { icon: '🎓', label: 'Education Sites' },
-  { icon: '📈', label: 'Signal Services' },
-  { icon: '📝', label: 'Trade Journals' },
-  { icon: '🤖', label: 'Automation Tools' },
-  { icon: '⏰', label: 'Session Timers' },
-  { icon: '📋', label: 'Strategy Managers' },
-]
-
 export default function Problem() {
   return (
     <section className="relative py-24 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-neon text-sm font-semibold tracking-widest uppercase">The Problem</span>
+          <span className="text-gold text-sm font-semibold tracking-widest uppercase">The Problem</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">Traders Are Using Too Many Tools</h2>
           <p className="text-muted-light max-w-2xl mx-auto">
             Juggling separate apps for charts, news, education, signals, journaling, automation, and session planning creates friction, distraction, and inconsistent results.
@@ -42,3 +31,14 @@ export default function Problem() {
     </section>
   )
 }
+
+const tools = [
+  { icon: '📊', label: 'Charting Platforms' },
+  { icon: '📰', label: 'News Feeds' },
+  { icon: '🎓', label: 'Education Sites' },
+  { icon: '📈', label: 'Signal Services' },
+  { icon: '📝', label: 'Trade Journals' },
+  { icon: '🤖', label: 'Automation Tools' },
+  { icon: '⏰', label: 'Session Timers' },
+  { icon: '📋', label: 'Strategy Managers' },
+]

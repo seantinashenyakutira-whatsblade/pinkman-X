@@ -40,7 +40,7 @@ export default function App() {
         <PartnershipSection />
         <section id="preview" className="relative py-24 px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="text-neon text-sm font-semibold tracking-widest uppercase">Preview</span>
+            <span className="text-gold text-sm font-semibold tracking-widest uppercase">Preview</span>
             <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">Coming Soon</h2>
             <p className="text-muted-light max-w-2xl mx-auto mb-8">
               Product preview and demo video will be available here soon. Join the waitlist to be notified when the preview launches.

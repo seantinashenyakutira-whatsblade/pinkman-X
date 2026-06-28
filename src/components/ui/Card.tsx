@@ -11,7 +11,7 @@ export default function Card({ children, className = '', glow = false, onClick }
   return (
     <div
       onClick={onClick}
-      className={`relative rounded-2xl border border-border/50 bg-dark-800/60 backdrop-blur-xl p-6 transition-all duration-300 ${glow ? 'hover:border-neon/30 hover:shadow-[0_0_30px_rgba(0,245,160,0.08)]' : 'hover:border-border-light'} ${onClick ? 'cursor-pointer' : ''} ${className}`}
+      className={`relative rounded-2xl border border-border/50 bg-dark-800/60 backdrop-blur-xl p-6 transition-all duration-300 ${glow ? 'hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.08)]' : 'hover:border-border-light'} ${onClick ? 'cursor-pointer' : ''} ${className}`}
     >
       {children}
     </div>

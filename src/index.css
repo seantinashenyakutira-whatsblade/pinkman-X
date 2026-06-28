@@ -6,14 +6,11 @@
   --color-dark-800: #12121e;
   --color-dark-700: #1a1a2e;
   --color-dark-600: #222240;
-  --color-neon: #00f5a0;
-  --color-neon-dark: #00c880;
-  --color-cyan: #00d4ff;
-  --color-cyan-dark: #00a8cc;
-  --color-gold: #f0b90b;
-  --color-gold-dark: #c9a00a;
-  --color-accent-1: #6c5ce7;
-  --color-accent-2: #a855f7;
+  --color-gold: #D4AF37;
+  --color-gold-dark: #B8960F;
+  --color-gold-light: #F0D060;
+  --color-amber: #E6A817;
+  --color-amber-dark: #C48E0F;
   --color-surface: #12121e;
   --color-muted: #6b7280;
   --color-muted-light: #9ca3af;
@@ -29,8 +26,8 @@
 }
 
 @keyframes glow {
-  0% { box-shadow: 0 0 20px rgba(0, 245, 160, 0.1); }
-  100% { box-shadow: 0 0 40px rgba(0, 245, 160, 0.3); }
+  0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); }
+  100% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
 }
 
 @keyframes float {
@@ -76,10 +73,10 @@ body {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neon-dark);
+  background: var(--color-gold-dark);
 }
 
 ::selection {
-  background: rgba(0, 245, 160, 0.3);
+  background: rgba(212, 175, 55, 0.3);
   color: #fff;
 }

@@ -16,7 +16,7 @@ export default function LearningAcademy() {
     <section className="relative py-24 px-4" id="academy">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-neon text-sm font-semibold tracking-widest uppercase">Learning Academy</span>
+          <span className="text-gold text-sm font-semibold tracking-widest uppercase">Learning Academy</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">Master the Markets</h2>
           <p className="text-muted-light max-w-2xl mx-auto">
             Structured trading education from fundamentals to advanced AI strategies.
@@ -30,7 +30,7 @@ export default function LearningAcademy() {
               <h3 className="text-base font-semibold text-white mb-2">{c.title}</h3>
               <p className="text-xs text-muted">{c.lessons}</p>
               <div className="mt-4 w-full h-1.5 rounded-full bg-dark-700 overflow-hidden">
-                <div className="h-full w-0 rounded-full bg-gradient-to-r from-neon to-cyan group-hover:w-full transition-all duration-700" />
+                <div className="h-full w-0 rounded-full bg-gradient-to-r from-gold to-amber group-hover:w-full transition-all duration-700" />
               </div>
             </Card>
           ))}

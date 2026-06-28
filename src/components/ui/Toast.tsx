@@ -22,8 +22,8 @@ export default function Toast({ message, type = 'info', visible, onClose }: Toas
   }, [visible, onClose])
 
   const colors = {
-    info: 'border-cyan/30 bg-cyan/10 text-cyan',
-    success: 'border-neon/30 bg-neon/10 text-neon',
+    info: 'border-gold/30 bg-gold/10 text-gold',
+    success: 'border-gold/30 bg-gold/10 text-gold',
     error: 'border-red-500/30 bg-red-500/10 text-red-400',
   }
 

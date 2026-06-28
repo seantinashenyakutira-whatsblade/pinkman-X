@@ -5,7 +5,7 @@ export default function AINewsIntelligence() {
     <section className="relative py-24 px-4" id="news">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-neon text-sm font-semibold tracking-widest uppercase">AI News Intelligence</span>
+          <span className="text-gold text-sm font-semibold tracking-widest uppercase">AI News Intelligence</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">Smart News. Smarter Trades.</h2>
           <p className="text-muted-light max-w-2xl mx-auto">
             Our AI continuously scans and filters global forex news, then explains exactly how each event may affect your trading.
@@ -28,8 +28,8 @@ export default function AINewsIntelligence() {
           ))}
         </div>
 
-        <div className="mt-8 p-5 rounded-xl bg-cyan/5 border border-cyan/10 text-center">
-          <p className="text-sm text-cyan">
+        <div className="mt-8 p-5 rounded-xl bg-gold/5 border border-gold/10 text-center">
+          <p className="text-sm text-gold">
             AI News Intelligence filters noise and delivers actionable insights — not just headlines.
           </p>
         </div>

@@ -66,7 +66,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
     <section className="relative py-24 px-4" id="waitlist">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <span className="text-neon text-sm font-semibold tracking-widest uppercase">Get Early Access</span>
+          <span className="text-gold text-sm font-semibold tracking-widest uppercase">Get Early Access</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">Join the Pinkman X Waitlist</h2>
           <p className="text-muted-light">
             Be first to access Pinkman X. Get exclusive beta invitations, early previews, and launch benefits.
@@ -76,8 +76,8 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
         <Card glow className="p-6 sm:p-8">
           {status === 'success' ? (
             <div className="text-center py-12">
-              <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-neon/10 border border-neon/30 flex items-center justify-center">
-                <svg className="w-8 h-8 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+                <svg className="w-8 h-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">Welcome to Pinkman X!</h3>
               <p className="text-muted-light">{message}</p>
@@ -91,7 +91,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                     type="text"
                     value={form.full_name}
                     onChange={(e) => setForm({ ...form, full_name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm placeholder-muted/50 focus:outline-none focus:ring-2 focus:ring-neon/30 focus:border-neon/50 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm placeholder-muted/50 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold/50 transition-all"
                     placeholder="Your full name"
                   />
                 </div>
@@ -101,7 +101,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                     type="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm placeholder-muted/50 focus:outline-none focus:ring-2 focus:ring-neon/30 focus:border-neon/50 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm placeholder-muted/50 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold/50 transition-all"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -113,7 +113,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                   type="tel"
                   value={form.whatsapp}
                   onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm placeholder-muted/50 focus:outline-none focus:ring-2 focus:ring-neon/30 focus:border-neon/50 transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm placeholder-muted/50 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold/50 transition-all"
                   placeholder="+263 7XX XXX XXX"
                 />
               </div>
@@ -124,7 +124,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                   <select
                     value={form.experience_level}
                     onChange={(e) => setForm({ ...form, experience_level: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-neon/30 focus:border-neon/50 transition-all appearance-none"
+                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold/50 transition-all appearance-none"
                   >
                     <option value="">Select experience</option>
                     {experienceOptions.map((o) => <option key={o} value={o}>{o}</option>)}
@@ -135,7 +135,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                   <select
                     value={form.interest}
                     onChange={(e) => setForm({ ...form, interest: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-neon/30 focus:border-neon/50 transition-all appearance-none"
+                    className="w-full px-4 py-3 rounded-xl bg-dark-900 border border-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold/50 transition-all appearance-none"
                   >
                     <option value="">Select interest</option>
                     {interestOptions.map((o) => <option key={o} value={o}>{o}</option>)}
@@ -148,7 +148,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
                   type="checkbox"
                   checked={form.marketing_consent}
                   onChange={(e) => setForm({ ...form, marketing_consent: e.target.checked })}
-                  className="mt-0.5 w-4 h-4 rounded border-border bg-dark-900 text-neon focus:ring-neon/30"
+                  className="mt-0.5 w-4 h-4 rounded border-border bg-dark-900 text-gold focus:ring-gold/30"
                 />
                 <span className="text-sm text-muted-light">
                   I agree to receive product updates, early access offers, and trading insights from Pinkman X.

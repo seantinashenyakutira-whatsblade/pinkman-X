@@ -45,7 +45,7 @@ export default function SubscriptionPreview() {
     <section className="relative py-24 px-4" id="pricing">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-neon text-sm font-semibold tracking-widest uppercase">Pricing</span>
+          <span className="text-gold text-sm font-semibold tracking-widest uppercase">Pricing</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">Choose Your Plan</h2>
           <p className="text-muted-light max-w-2xl mx-auto">
             Start free. Upgrade as you grow. All plans include core AI intelligence features.
@@ -54,9 +54,9 @@ export default function SubscriptionPreview() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {plans.map((p) => (
-            <Card key={p.name} glow={p.popular} className={`flex flex-col ${p.popular ? 'border-neon/30 relative' : ''}`}>
+            <Card key={p.name} glow={p.popular} className={`flex flex-col ${p.popular ? 'border-gold/30 relative' : ''}`}>
               {p.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-neon text-dark-950 text-xs font-bold rounded-full">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gold text-dark-950 text-xs font-bold rounded-full">
                   Most Popular
                 </div>
               )}
@@ -71,7 +71,7 @@ export default function SubscriptionPreview() {
               <ul className="space-y-2.5 mb-8 flex-1">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm text-muted-light">
-                    <svg className="w-4 h-4 text-neon shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    <svg className="w-4 h-4 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                     {f}
                   </li>
                 ))}

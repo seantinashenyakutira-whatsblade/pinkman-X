@@ -6,28 +6,28 @@ const sessions = [
     time: '00:00 – 09:00 GMT',
     assets: 'JPY, AUD, NZD, Gold',
     desc: 'Lower volatility, range-bound movements. Ideal for breakout preparation.',
-    color: 'border-l-cyan',
+    color: 'border-l-gold',
   },
   {
     name: 'London Session',
     time: '07:00 – 16:00 GMT',
     assets: 'EUR, GBP, CHF, Gold',
     desc: 'Highest liquidity session. Major trends often begin here.',
-    color: 'border-l-neon',
+    color: 'border-l-gold',
   },
   {
     name: 'New York Session',
     time: '12:00 – 21:00 GMT',
     assets: 'USD, CAD, Indices, Oil',
     desc: 'High volatility with US economic data releases.',
-    color: 'border-l-gold',
+    color: 'border-l-amber',
   },
   {
     name: 'London / New York Overlap',
     time: '12:00 – 16:00 GMT',
     assets: 'All Majors, Gold, Indices',
     desc: 'Peak market activity — highest volume and volatility window.',
-    color: 'border-l-cyan',
+    color: 'border-l-gold',
   },
   {
     name: 'News Blackout Windows',
@@ -41,7 +41,7 @@ const sessions = [
     time: 'Custom',
     assets: 'Your Markets',
     desc: 'Build and save your personalized daily trading schedule.',
-    color: 'border-l-accent-2',
+    color: 'border-l-amber',
   },
 ]
 
@@ -50,7 +50,7 @@ export default function TradingTimetable() {
     <section className="relative py-24 px-4" id="timetable">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-neon text-sm font-semibold tracking-widest uppercase">Trading Timetable</span>
+          <span className="text-gold text-sm font-semibold tracking-widest uppercase">Trading Timetable</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">Trade the Right Sessions</h2>
           <p className="text-muted-light max-w-2xl mx-auto">
             Know exactly when to trade each asset with session analysis, overlap windows, and personalized scheduling.
@@ -65,7 +65,7 @@ export default function TradingTimetable() {
                 <span className="text-xs font-mono text-muted bg-dark-700 px-2 py-1 rounded">{s.time}</span>
               </div>
               <p className="text-sm text-muted-light mb-2">{s.desc}</p>
-              <p className="text-xs text-neon font-mono">{s.assets}</p>
+              <p className="text-xs text-gold font-mono">{s.assets}</p>
             </Card>
           ))}
         </div>

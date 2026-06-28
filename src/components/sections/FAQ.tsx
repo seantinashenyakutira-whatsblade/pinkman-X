@@ -43,7 +43,7 @@ export default function FAQ() {
     <section className="relative py-24 px-4" id="faq">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <span className="text-neon text-sm font-semibold tracking-widest uppercase">FAQ</span>
+          <span className="text-gold text-sm font-semibold tracking-widest uppercase">FAQ</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3">Frequently Asked Questions</h2>
         </div>
 

@@ -2,14 +2,13 @@ import type { ReactNode } from 'react'
 
 interface BadgeProps {
   children: ReactNode
-  variant?: 'neon' | 'gold' | 'cyan' | 'muted'
+  variant?: 'gold' | 'amber' | 'muted'
 }
 
-export default function Badge({ children, variant = 'neon' }: BadgeProps) {
+export default function Badge({ children, variant = 'gold' }: BadgeProps) {
   const colors = {
-    neon: 'bg-neon/10 text-neon border-neon/20',
     gold: 'bg-gold/10 text-gold border-gold/20',
-    cyan: 'bg-cyan/10 text-cyan border-cyan/20',
+    amber: 'bg-amber/10 text-amber border-amber/20',
     muted: 'bg-dark-700 text-muted-light border-border',
   }
 
