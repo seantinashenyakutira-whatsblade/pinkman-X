@@ -3,8 +3,10 @@ export default function Footer() {
     <footer className="relative py-12 px-4 border-t border-border/40">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center mb-6">
-          <div className="flex items-center gap-2 mb-2">
-            <img src="/pinkmanx-logo.jpeg" alt="Pinkman X" className="w-7 h-7 rounded-lg object-cover" />
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-9 h-9 rounded-lg overflow-hidden">
+              <img src="/pinkmanx-logo.jpeg" alt="Pinkman X" className="w-full h-full object-cover scale-125" />
+            </div>
             <span className="font-bold text-white text-sm">Pinkman X</span>
           </div>
           <p className="text-[10px] text-muted tracking-widest uppercase">AI Trading Intelligence</p>
