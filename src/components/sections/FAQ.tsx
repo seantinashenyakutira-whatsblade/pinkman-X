@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 import Card from '../ui/Card'
 
 const faqs = [
@@ -42,18 +43,17 @@ export default function FAQ() {
   return (
     <section className="relative py-24 px-4" id="faq">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12">
-          <span className="text-gold text-sm font-semibold tracking-widest uppercase">FAQ</span>
+        <div className="text-center mb-12 reveal reveal-slide-up">
+          <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">FAQ</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3">Frequently Asked Questions</h2>
         </div>
-
         <div className="space-y-3">
           {faqs.map((faq, i) => (
-            <Card key={i} onClick={() => setOpen(open === i ? null : i)} className="p-0">
+            <Card key={i} onClick={() => setOpen(open === i ? null : i)} className="p-0 card-hover glow-gold reveal reveal-slide-up">
               <div className="px-6 py-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between cursor-pointer">
                   <h3 className="text-sm font-medium text-white pr-4">{faq.q}</h3>
-                  <svg className={`w-5 h-5 text-muted shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                  <ChevronDown className={`w-5 h-5 text-muted shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180 text-gold' : ''}`} />
                 </div>
                 <div className={`overflow-hidden transition-all duration-300 ${open === i ? 'max-h-96 mt-3' : 'max-h-0'}`}>
                   <p className="text-sm text-muted-light leading-relaxed">{faq.a}</p>

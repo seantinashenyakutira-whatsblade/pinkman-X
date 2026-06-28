@@ -12,6 +12,7 @@ import TradingTimetable from './components/sections/TradingTimetable'
 import Automation from './components/sections/Automation'
 import SubscriptionPreview from './components/sections/SubscriptionPreview'
 import PartnershipSection from './components/sections/PartnershipSection'
+import FAQ from './components/sections/FAQ'
 import FoundingWaitlist from './components/sections/FoundingWaitlist'
 import Footer from './components/sections/Footer'
 import Toast from './components/ui/Toast'
@@ -40,7 +41,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-dark-950 text-white">
       <Header />
-      <main>
+      <main className="bg-chart-pattern">
         <Hero />
         <Stats />
         <Ticker />
@@ -53,6 +54,7 @@ export default function App() {
         <Automation />
         <SubscriptionPreview />
         <PartnershipSection />
+        <FAQ />
         <FoundingWaitlist />
       </main>
       <Footer />

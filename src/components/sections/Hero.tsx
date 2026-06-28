@@ -52,10 +52,10 @@ export default function Hero() {
             <ScrollLink href="#founding">
               <Button variant="primary" size="lg">Join the Waitlist &rarr;</Button>
             </ScrollLink>
-            <ScrollLink href="#preview">
+            <ScrollLink href="#features">
               <Button variant="secondary" size="lg">
                 <Play className="w-5 h-5 mr-2" />
-                Watch Preview
+                Explore Features
               </Button>
             </ScrollLink>
           </div>

@@ -28,7 +28,7 @@ export default function Header() {
               {l}
             </ScrollLink>
           ))}
-          <ScrollLink href="#waitlist">
+          <ScrollLink href="#founding">
             <Button variant="primary" size="sm">Join Waitlist</Button>
           </ScrollLink>
         </nav>
@@ -43,7 +43,7 @@ export default function Header() {
               {l}
             </ScrollLink>
           ))}
-          <ScrollLink href="#waitlist">
+          <ScrollLink href="#founding">
             <Button variant="primary" size="sm" className="w-full mt-2">Join Waitlist</Button>
           </ScrollLink>
         </div>
