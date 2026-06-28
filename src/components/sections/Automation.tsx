@@ -1,3 +1,4 @@
+import { AlertTriangle } from 'lucide-react'
 import Card from '../ui/Card'
 
 export default function Automation() {
@@ -8,7 +9,7 @@ export default function Automation() {
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">Automation</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             Automation When{' '}
-            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">You're Ready</span>
+            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent heading-underline">You're Ready</span>
           </h2>
           <p className="text-sm text-muted-light/70 leading-relaxed mb-6">
             Pinkman X will support broker connection and MT5 automation for users who want to configure AI-powered strategies, risk settings, timeframes, and trading modes.
@@ -18,8 +19,8 @@ export default function Automation() {
               <span key={t} className="px-3 py-1.5 rounded-lg text-[10px] font-semibold bg-gold/5 text-gold border border-gold/15 uppercase tracking-wider card-hover">{t}</span>
             ))}
           </div>
-          <div className="flex items-start gap-2 p-3 rounded-lg bg-amber/5 border border-amber/15">
-            <svg className="w-4 h-4 text-amber shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg>
+          <div className="flex items-start gap-2 p-3 rounded-lg bg-amber/5 border border-amber/15 glow-gold">
+            <AlertTriangle className="w-4 h-4 text-amber shrink-0 mt-0.5" />
             <p className="text-xs text-amber/80">Automation is optional and should be tested on demo first.</p>
           </div>
         </div>

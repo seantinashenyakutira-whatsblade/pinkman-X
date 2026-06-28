@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Menu, X } from 'lucide-react'
 import Button from './ui/Button'
 import ScrollLink from './ui/ScrollLink'
 
@@ -32,9 +33,7 @@ export default function Header() {
           </ScrollLink>
         </nav>
         <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-muted-light hover:text-white">
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            {menuOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
-          </svg>
+          {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
       <div className={`md:hidden transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-80' : 'max-h-0'}`}>

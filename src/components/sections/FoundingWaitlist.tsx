@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { Check } from 'lucide-react'
 import Button from '../ui/Button'
 import Badge from '../ui/Badge'
 import { submitWaitlist } from '../../lib/supabase'
@@ -31,15 +32,15 @@ export default function FoundingWaitlist() {
           <Badge className="mb-4">Founding Traders</Badge>
           <h2 className="text-3xl sm:text-4xl font-bold mb-3">
             Become a{' '}
-            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Founding Trader</span>
+            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent heading-underline-center">Founding Trader</span>
           </h2>
           <p className="text-muted-light/70 text-sm max-w-xl mx-auto">Be among the first to access Pinkman X. Founding Traders receive exclusive beta invites, early previews, and launch benefits.</p>
         </div>
-        <div className="rounded-2xl bg-dark-800/80 border border-border/60 p-6 sm:p-8 max-w-lg mx-auto card-hover reveal reveal-delay-1">
+        <div className="rounded-2xl bg-dark-800/80 border border-border/60 p-6 sm:p-8 max-w-lg mx-auto card-hover glow-gold reveal reveal-delay-1">
           {status === 'success' ? (
             <div className="text-center py-8 animate-scale-in">
               <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
-                <svg className="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                <Check className="w-7 h-7 text-gold" />
               </div>
               <h3 className="text-xl font-bold text-white mb-1">Welcome to Pinkman X!</h3>
               <p className="text-sm text-muted-light">{msg}</p>

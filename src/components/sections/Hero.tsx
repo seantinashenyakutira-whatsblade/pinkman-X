@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { Play, Check } from 'lucide-react'
 import Button from '../ui/Button'
 import Badge from '../ui/Badge'
 import ScrollLink from '../ui/ScrollLink'
@@ -42,7 +43,7 @@ export default function Hero() {
             <span className="text-white">AI</span>{' '}
             <span className="bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Trading</span>
             <br />
-            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Intelligence</span>
+            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent heading-underline">Intelligence</span>
           </h1>
           <p className="text-base sm:text-lg text-muted-light/70 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed reveal visible reveal-delay-1">
             Pinkman X is an AI-powered trading platform built to help traders learn, analyze markets, understand news, manage risk, and automate trading strategies from one intelligent workspace.
@@ -53,7 +54,7 @@ export default function Hero() {
             </ScrollLink>
             <ScrollLink href="#preview">
               <Button variant="secondary" size="lg">
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <Play className="w-5 h-5 mr-2" />
                 Watch Preview
               </Button>
             </ScrollLink>
@@ -61,12 +62,12 @@ export default function Hero() {
           <p className="text-xs text-muted italic reveal visible reveal-delay-3">First 10 waitlist members receive 2 months of Pinkman X Pro free at launch.</p>
         </div>
 
-        <div className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto reveal visible reveal-delay-2">
-          <div className="rounded-2xl bg-dark-800/80 border border-border/60 p-6 sm:p-8 backdrop-blur-sm card-hover">
+          <div className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto reveal visible reveal-delay-2">
+          <div className="rounded-2xl bg-dark-800/80 border border-border/60 p-6 sm:p-8 backdrop-blur-sm card-hover glow-gold">
             {status === 'success' ? (
               <div className="text-center py-6">
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
-                  <svg className="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <Check className="w-7 h-7 text-gold" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-1">Welcome!</h3>
                 <p className="text-sm text-muted-light">{msg}</p>

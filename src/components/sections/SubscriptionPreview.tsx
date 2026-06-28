@@ -28,14 +28,14 @@ export default function SubscriptionPreview() {
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">Pricing</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             Choose Your Level{' '}
-            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">When We Launch</span>
+            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent heading-underline-center">When We Launch</span>
           </h2>
           <p className="text-muted-light/70 text-sm max-w-xl mx-auto">Four tiers — from free exploration to full automation. Founding Traders on the waitlist receive launch benefits.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {plans.map((p, i) => (
             <div key={p.name} className={`card-hover reveal reveal-delay-${(i % 4) + 1}`}>
-              <Card highlight={p.popular} className={`p-6 flex flex-col h-full ${p.popular ? 'relative border-gold/40' : ''}`}>
+              <Card highlight={p.popular} className={`p-6 flex flex-col h-full ${p.popular ? 'relative border-gold/40 glow-gold' : ''}`}>
                 {p.popular && (
                   <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-gold text-dark-950 text-[10px] font-bold rounded-full tracking-wider whitespace-nowrap">
                     MOST LOVED

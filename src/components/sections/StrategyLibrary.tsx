@@ -1,3 +1,4 @@
+import { Layers } from 'lucide-react'
 import Card from '../ui/Card'
 
 const strategies = [
@@ -51,7 +52,7 @@ export default function StrategyLibrary({ onToast }: StrategyProps) {
                 <h3 className="text-sm font-bold text-white mb-2">{s.name}</h3>
                 <MiniChart />
                 <div className="mt-2 flex items-center gap-1">
-                  <svg className="w-3 h-3 text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  <Layers className="w-3 h-3 text-gold" />
                   <span className="text-[10px] text-gold">AI-powered</span>
                 </div>
               </Card>

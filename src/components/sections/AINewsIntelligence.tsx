@@ -15,7 +15,7 @@ export default function AINewsIntelligence() {
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">AI News Intelligence</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             Understand News Before It{' '}
-            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Moves the Market</span>
+            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent heading-underline">Moves the Market</span>
           </h2>
           <p className="text-sm text-muted-light/70 leading-relaxed mb-6">
             Pinkman X filters important forex news and explains how each update could affect currencies, gold, indices, volatility, spreads, and risk. Instead of just showing economic news, the AI tells you what to watch — and when to avoid trading.
@@ -30,7 +30,7 @@ export default function AINewsIntelligence() {
           </ul>
         </div>
         <div className="reveal reveal-delay-2">
-          <Card className="p-5 card-hover">
+          <Card className="p-5 card-hover glow-gold">
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-semibold text-white tracking-wider uppercase">AI News Feed</span>
               <span className="text-[10px] flex items-center gap-1 text-gold font-semibold">
