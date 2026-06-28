@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Header from './components/Header'
 import Hero from './components/sections/Hero'
 import Stats from './components/sections/Stats'
@@ -20,6 +20,22 @@ export default function App() {
   const [toast, setToast] = useState({ visible: false, message: '' })
   const showToast = useCallback((message: string) => setToast({ visible: true, message }), [])
   const hideToast = useCallback(() => setToast({ visible: false, message: '' }), [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    )
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div className="min-h-screen bg-dark-950 text-white">
