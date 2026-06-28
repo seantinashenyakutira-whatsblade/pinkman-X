@@ -13,17 +13,17 @@ export default function TradingTimetable() {
   return (
     <section className="relative py-20 px-4" id="timetable">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 reveal">
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">Trading Timetable</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             Trade With{' '}
-            <span className="bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Time, Not Emotion</span>
+            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Time, Not Emotion</span>
           </h2>
           <p className="text-muted-light/70 text-sm max-w-2xl mx-auto">Plan your trading around global sessions, news events, and your personal schedule.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {sessions.map((s) => (
-            <Card key={s.name} className="p-5">
+          {sessions.map((s, i) => (
+            <Card key={s.name} className={`p-5 card-hover reveal reveal-delay-${(i % 6) + 1}`}>
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-2xl">{s.icon}</span>
                 <div>

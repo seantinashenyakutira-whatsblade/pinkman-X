@@ -32,28 +32,30 @@ export default function StrategyLibrary({ onToast }: StrategyProps) {
   return (
     <section className="relative py-20 px-4" id="strategies">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 reveal">
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">Strategy Library</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             AI-Powered Strategies{' '}
-            <span className="bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Built for Every Trader</span>
+            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Built for Every Trader</span>
           </h2>
           <p className="text-muted-light/70 text-sm">Access to strategies will depend on subscription plan.</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {strategies.map((s) => (
-            <Card key={s.name} className={`p-4 border-l-2 ${s.color}`} onClick={() => onToast('This strategy will be available during beta.')}>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-semibold tracking-wider text-gold uppercase">{s.cat}</span>
-                <span className="text-[10px] text-muted font-mono">v1.0</span>
-              </div>
-              <h3 className="text-sm font-bold text-white mb-2">{s.name}</h3>
-              <MiniChart />
-              <div className="mt-2 flex items-center gap-1">
-                <svg className="w-3 h-3 text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span className="text-[10px] text-gold">AI-powered</span>
-              </div>
-            </Card>
+          {strategies.map((s, i) => (
+            <div key={s.name} className={`card-hover reveal reveal-delay-${(i % 6) + 1}`} onClick={() => onToast('This strategy will be available during beta.')}>
+              <Card className={`p-4 border-l-2 ${s.color} h-full`}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-semibold tracking-wider text-gold uppercase">{s.cat}</span>
+                  <span className="text-[10px] text-muted font-mono">v1.0</span>
+                </div>
+                <h3 className="text-sm font-bold text-white mb-2">{s.name}</h3>
+                <MiniChart />
+                <div className="mt-2 flex items-center gap-1">
+                  <svg className="w-3 h-3 text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  <span className="text-[10px] text-gold">AI-powered</span>
+                </div>
+              </Card>
+            </div>
           ))}
         </div>
       </div>

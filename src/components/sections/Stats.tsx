@@ -6,8 +6,8 @@ export default function Stats() {
           { val: '11+', label: 'AI Strategies' },
           { val: '8', label: 'Courses at Launch' },
           { val: '24/5', label: 'Market Coverage' },
-        ].map((s) => (
-          <div key={s.label} className="text-center py-5 rounded-xl bg-dark-800/50 border border-border/40">
+        ].map((s, i) => (
+          <div key={s.label} className={`text-center py-5 rounded-xl bg-dark-800/50 border border-border/40 card-hover reveal reveal-delay-${i + 1}`}>
             <div className="text-2xl sm:text-3xl font-black text-gold">{s.val}</div>
             <div className="text-xs text-muted-light mt-1 uppercase tracking-wider">{s.label}</div>
           </div>

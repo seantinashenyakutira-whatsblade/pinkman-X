@@ -16,18 +16,18 @@ export default function Solution() {
   return (
     <section className="relative py-20 px-4" id="features">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 reveal">
           <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">The Solution</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
             One Platform.{' '}
-            <span className="bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Every Trading Workflow.</span>
+            <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">Every Trading Workflow.</span>
           </h2>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {features.map((f) => (
-            <Card key={f.title} className="p-5">
+          {features.map((f, i) => (
+            <Card key={f.title} className={`p-5 card-hover reveal reveal-delay-${(i % 6) + 1}`}>
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-9 h-9 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                   <span className="text-sm">{f.icon}</span>
                 </div>
                 <h3 className="text-sm font-bold text-white">{f.title}</h3>
