@@ -1,91 +1,67 @@
 import Card from '../ui/Card'
-import Button from '../ui/Button'
 import ScrollLink from '../ui/ScrollLink'
 
 const plans = [
   {
-    name: 'Explorer',
-    price: 'Free',
-    desc: 'Get started with core trading tools.',
+    name: 'Explorer', price: 'Free', period: null, popular: false,
     features: ['Basic chart analysis', '2 courses', 'News feed access', 'Community access'],
-    cta: 'Join Free',
-    popular: false,
   },
   {
-    name: 'Trader',
-    price: '$10',
-    period: '/month',
-    desc: 'For active traders who want more.',
+    name: 'Trader', price: '$10', period: '/month', popular: false,
     features: ['Full AI chart analysis', 'All courses', 'AI news intelligence', 'Strategy library (Trader)', 'Trade journal'],
-    cta: 'Join Waitlist',
-    popular: true,
   },
   {
-    name: 'Pro',
-    price: '$25',
-    period: '/month',
-    desc: 'Professional-grade trading toolkit.',
+    name: 'Pro', price: '$25', period: '/month', popular: true,
     features: ['Everything in Trader', 'All strategies (incl. Pro)', 'MT5 automation', 'Risk management suite', 'Session planner', 'Priority support'],
-    cta: 'Join Waitlist',
-    popular: false,
   },
   {
-    name: 'Elite',
-    price: '$50',
-    period: '/month',
-    desc: 'Maximum edge. Premium access.',
+    name: 'Elite', price: '$50', period: '/month', popular: false,
     features: ['Everything in Pro', 'Elite-only strategies', 'API access', 'Dedicated account manager', 'Beta feature access', 'Founder feedback calls'],
-    cta: 'Join Waitlist',
-    popular: false,
   },
 ]
 
 export default function SubscriptionPreview() {
   return (
-    <section className="relative py-24 px-4" id="pricing">
+    <section className="relative py-20 px-4" id="pricing">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-gold text-sm font-semibold tracking-widest uppercase">Pricing</span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">Choose Your Plan</h2>
-          <p className="text-muted-light max-w-2xl mx-auto">
-            Start free. Upgrade as you grow. All plans include core AI intelligence features.
-          </p>
+        <div className="text-center mb-12">
+          <span className="text-gold text-[10px] font-semibold tracking-[0.2em] uppercase">Pricing</span>
+          <h2 className="text-3xl sm:text-4xl font-bold mt-3 mb-4">
+            Choose Your Level{' '}
+            <span className="bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent">When We Launch</span>
+          </h2>
+          <p className="text-muted-light/70 text-sm max-w-xl mx-auto">Four tiers — from free exploration to full automation. Founding Traders on the waitlist receive launch benefits.</p>
         </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {plans.map((p) => (
-            <Card key={p.name} glow={p.popular} className={`flex flex-col ${p.popular ? 'border-gold/30 relative' : ''}`}>
+            <Card key={p.name} highlight={p.popular} className={`p-6 flex flex-col ${p.popular ? 'relative border-gold/40' : ''}`}>
               {p.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gold text-dark-950 text-xs font-bold rounded-full">
-                  Most Popular
+                <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-gold text-dark-950 text-[10px] font-bold rounded-full tracking-wider whitespace-nowrap">
+                  MOST LOVED
                 </div>
               )}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-white mb-1">{p.name}</h3>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-black text-white">{p.price}</span>
-                  {p.period && <span className="text-sm text-muted">{p.period}</span>}
-                </div>
-                <p className="text-sm text-muted-light mt-2">{p.desc}</p>
+              <h3 className="text-base font-bold text-white mb-1">{p.name}</h3>
+              <div className="flex items-baseline gap-0.5 mb-5">
+                <span className="text-2xl font-black text-white">{p.price}</span>
+                {p.period && <span className="text-xs text-muted">{p.period}</span>}
               </div>
-              <ul className="space-y-2.5 mb-8 flex-1">
+              <ul className="space-y-2.5 mb-6 flex-1">
                 {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-muted-light">
-                    <svg className="w-4 h-4 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <li key={f} className="flex items-start gap-2.5 text-xs text-muted-light">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold mt-1 shrink-0" />
                     {f}
                   </li>
                 ))}
               </ul>
-              <ScrollLink href="#waitlist">
-                <Button variant={p.popular ? 'primary' : 'secondary'} className="w-full">{p.cta}</Button>
+              <ScrollLink href="#founding">
+                <span className={`block w-full text-center py-3 rounded-xl text-sm font-semibold border transition-all duration-300 cursor-pointer ${p.popular ? 'bg-gold text-dark-950 border-gold hover:bg-gold-dark' : 'bg-transparent text-white border-white/20 hover:border-white/40 hover:bg-white/5'}`}>
+                  {p.popular ? 'Get Started' : 'Join Waitlist'}
+                </span>
               </ScrollLink>
             </Card>
           ))}
         </div>
-
-        <p className="text-center text-xs text-muted mt-6">
-          Pricing may change before launch based on beta feedback.
-        </p>
+        <p className="text-center text-[10px] text-muted mt-5">Pricing may change before launch based on beta feedback.</p>
       </div>
     </section>
   )

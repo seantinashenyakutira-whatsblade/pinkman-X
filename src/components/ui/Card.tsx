@@ -3,15 +3,15 @@ import type { ReactNode } from 'react'
 interface CardProps {
   children: ReactNode
   className?: string
-  glow?: boolean
+  highlight?: boolean
   onClick?: () => void
 }
 
-export default function Card({ children, className = '', glow = false, onClick }: CardProps) {
+export default function Card({ children, className = '', highlight = false, onClick }: CardProps) {
   return (
     <div
       onClick={onClick}
-      className={`relative rounded-2xl border border-border/50 bg-dark-800/60 backdrop-blur-xl p-6 transition-all duration-300 ${glow ? 'hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.08)]' : 'hover:border-border-light'} ${onClick ? 'cursor-pointer' : ''} ${className}`}
+      className={`relative rounded-xl bg-dark-800/90 border transition-all duration-300 ${highlight ? 'border-gold/30' : 'border-border/60'} ${onClick ? 'cursor-pointer hover:border-gold/30 hover:shadow-[0_0_25px_rgba(212,175,55,0.06)]' : 'hover:border-border-light'} ${className}`}
     >
       {children}
     </div>

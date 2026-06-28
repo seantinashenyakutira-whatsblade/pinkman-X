@@ -73,7 +73,7 @@ export default function WaitlistForm({ onSuccess }: WaitlistFormProps) {
           </p>
         </div>
 
-        <Card glow className="p-6 sm:p-8">
+        <Card className="p-6 sm:p-8">
           {status === 'success' ? (
             <div className="text-center py-12">
               <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">

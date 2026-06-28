@@ -11,11 +11,8 @@ export default function ScrollLink({ href, children, className = '', onClick }: 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
     const el = document.querySelector(href)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     onClick?.()
   }
-
   return <a href={href} onClick={handleClick} className={className}>{children}</a>
 }
