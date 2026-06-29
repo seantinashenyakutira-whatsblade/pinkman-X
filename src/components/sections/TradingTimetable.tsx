@@ -24,7 +24,7 @@ export default function TradingTimetable() {
           </h2>
           <p className="text-muted-light/70 text-sm max-w-2xl mx-auto">Plan your trading around global sessions, news events, and your personal schedule.</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {sessions.map((s, i) => (
             <Card key={s.name} className={`p-5 card-hover glow-gold reveal ${r[i % 5]} reveal-delay-${(i % 5) + 1}`}>
               <div className="flex items-center gap-3 mb-3">

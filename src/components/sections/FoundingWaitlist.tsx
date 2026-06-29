@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Check } from 'lucide-react'
 import Button from '../ui/Button'
 import Badge from '../ui/Badge'
@@ -8,9 +9,16 @@ const expOptions = ['Beginner', 'Intermediate', 'Advanced', 'Professional']
 const intOptions = ['Learning', 'AI Analysis', 'Trading Automation', 'Signals', 'Prop Firm Support', 'All Features']
 
 export default function FoundingWaitlist() {
+  const navigate = useNavigate()
   const [f, setF] = useState({ full_name: '', email: '', whatsapp: '', experience_level: '', interest: '', marketing_consent: false })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [msg, setMsg] = useState('')
+
+  useEffect(() => {
+    if (status !== 'success') return
+    const t = setTimeout(() => navigate('/blog'), 5000)
+    return () => clearTimeout(t)
+  }, [status, navigate])
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()

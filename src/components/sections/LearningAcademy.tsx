@@ -19,7 +19,7 @@ export default function LearningAcademy() {
             <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent heading-underline">Automate</span>
           </h2>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {courses.map((c, i) => (
             <Card key={c} className={`p-5 text-center card-hover glow-gold reveal ${r[i % 5]} reveal-delay-${(i % 5) + 1}`}>
               <div className="w-10 h-10 mx-auto mb-3 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

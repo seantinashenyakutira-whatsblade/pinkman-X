@@ -13,7 +13,7 @@ export default function PartnershipSection() {
           </h2>
           <p className="text-muted-light/70 text-sm max-w-xl mx-auto">A partnership combining African-built AI engineering with real-world trading expertise.</p>
         </div>
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <Card className="p-6 text-center card-hover glow-gold reveal reveal-tilt reveal-delay-1">
             <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
               <Code2 className="w-7 h-7 text-gold" />

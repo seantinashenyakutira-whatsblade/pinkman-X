@@ -26,7 +26,7 @@ export default function Solution() {
             <span className="font-cursive italic font-normal bg-gradient-to-r from-gold to-amber bg-clip-text text-transparent heading-underline">Every Trading Workflow.</span>
           </h2>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {features.map((f, i) => (
             <Card key={f.title} className={`p-5 card-hover glow-gold reveal ${r[i % 5]} reveal-delay-${(i % 5) + 1}`}>
               <div className="flex items-center gap-3 mb-2">

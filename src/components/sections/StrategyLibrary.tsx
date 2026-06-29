@@ -43,7 +43,7 @@ export default function StrategyLibrary({ onToast }: StrategyProps) {
           </h2>
           <p className="text-muted-light/70 text-sm">Access to strategies will depend on subscription plan.</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
           {strategies.map((s, i) => (
             <div key={s.name} className={`card-hover reveal ${r[i % 5]} reveal-delay-${(i % 5) + 1}`} onClick={() => onToast('This strategy will be available during beta.')}>
               <Card className={`p-4 border-l-2 ${s.color} h-full`}>

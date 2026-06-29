@@ -34,7 +34,7 @@ export default function SubscriptionPreview() {
           </h2>
           <p className="text-muted-light/70 text-sm max-w-xl mx-auto">Four tiers — from free exploration to full automation. Founding Traders on the waitlist receive launch benefits.</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {plans.map((p, i) => (
             <div key={p.name} className={`card-hover reveal ${r[i % 4]} reveal-delay-${i + 1}`}>
               <Card highlight={p.popular} className={`p-6 flex flex-col h-full ${p.popular ? 'relative border-gold/40 glow-gold' : ''}`}>

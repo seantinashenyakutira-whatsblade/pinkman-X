@@ -24,7 +24,7 @@ export default function Problem() {
           </h2>
           <p className="text-muted-light/70 max-w-2xl mx-auto text-sm sm:text-base">Juggling separate apps for charts, news, education, signals, journaling, automation, and session planning creates friction, distraction, and inconsistent results.</p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {tools.map((t, i) => (
             <Card key={t.label} className={`p-5 text-center sm:text-left sm:flex sm:items-start sm:gap-4 card-hover glow-gold reveal ${r[i % 5]} reveal-delay-${(i % 5) + 1}`}>
               <div className="w-9 h-9 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0 sm:mt-0.5">
