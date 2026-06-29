@@ -104,26 +104,74 @@ export default function Chatbot() {
     }
   }, [open])
 
-  const handleSend = async (e?: FormEvent) => {
-    e?.preventDefault()
-    if (!input.trim() || loading) return
-    const userMsg = input.trim()
-    setInput('')
-    setMessages((prev) => [...prev, { role: 'user', content: userMsg }])
-    setLoading(true)
+  const systemPrompt = `You are a helpful assistant for Pinkman X, an AI-powered trading intelligence platform.
+
+ABOUT PINKMAN X:
+- Pinkman X combines AI education, market analysis, news filtering, strategy management, session planning, and MT5 automation into one workspace.
+- Built by WhatsBlade Technologies in partnership with Pinkman FX.
+- Features: AI Chart Analysis, Beginner to Advanced Courses, AI Filtered Forex News, Smart Money Education, Sessions & Timetable, Broker & MT5 Integration, Prebuilt AI Strategies, Journal & Analytics, Risk Management Tools.
+- Currently in pre-launch with a waitlist open at pinkmanx.vip.
+- Pricing: Explorer (free), Trader ($10/mo), Pro ($25/mo), Elite ($50/mo).
+- Contact: hello@pinkmanx.vip
+- Blog and updates at pinkmanx.vip/blog
+
+Keep answers concise, friendly, and helpful. Use emojis occasionally. If asked something outside your knowledge, say you'll redirect them to hello@pinkmanx.vip.`
+
+  async function getReply(message: string, history: Msg[]): Promise<string> {
+    // Try Vercel serverless function first
     try {
-      const history = messages.slice(-10)
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userMsg, history }),
+        body: JSON.stringify({ message, history: history.slice(-10) }),
       })
       const json = await res.json()
-      setMessages((prev) => [...prev, { role: 'assistant', content: json.reply || "I'm not sure. Email hello@pinkmanx.vip." }])
-    } catch {
-      setMessages((prev) => [...prev, { role: 'assistant', content: "Network issue. Try again or email hello@pinkmanx.vip." }])
+      if (!json.noKey) return json.reply || "I'm not sure. Email hello@pinkmanx.vip."
+    } catch {}
+
+    // Fallback: call Groq directly from browser using Vite env var
+    const viteKey = import.meta.env.VITE_GROQ_API_KEY
+    if (viteKey) {
+      try {
+        const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${viteKey}` },
+          body: JSON.stringify({
+            model: 'llama-3.1-70b-versatile',
+            messages: [
+              { role: 'system', content: systemPrompt },
+              ...history.slice(-10),
+              { role: 'user', content: message },
+            ],
+            temperature: 0.7,
+            max_tokens: 500,
+          }),
+        })
+        if (res.ok) {
+          const json = await res.json()
+          return json.choices?.[0]?.message?.content || "I'm not sure. Email hello@pinkmanx.vip."
+        }
+      } catch {}
     }
+
+    return "Sorry, I'm having a moment. Try again or email hello@pinkmanx.vip."
+  }
+
+  const sendMessage = async (text: string) => {
+    if (loading) return
+    const userMsg = text.trim()
+    if (!userMsg) return
+    setInput('')
+    setMessages((prev) => [...prev, { role: 'user', content: userMsg }])
+    setLoading(true)
+    const reply = await getReply(userMsg, messages)
+    setMessages((prev) => [...prev, { role: 'assistant', content: reply }])
     setLoading(false)
+  }
+
+  const handleSend = async (e?: FormEvent) => {
+    e?.preventDefault()
+    await sendMessage(input)
   }
 
   // Drag system: global mouse/touch listeners
@@ -243,24 +291,7 @@ export default function Chatbot() {
                 {quickQ.map((q) => (
                   <button
                     key={q}
-                    onClick={async () => {
-                      setInput(q)
-                      setMessages((prev) => [...prev, { role: 'user', content: q }])
-                      setLoading(true)
-                      try {
-                        const history = messages.slice(-10)
-                        const res = await fetch('/api/chat', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ message: q, history }),
-                        })
-                        const json = await res.json()
-                        setMessages((prev) => [...prev, { role: 'assistant', content: json.reply || "I'm not sure. Email hello@pinkmanx.vip." }])
-                      } catch {
-                        setMessages((prev) => [...prev, { role: 'assistant', content: "Network issue. Try again or email hello@pinkmanx.vip." }])
-                      }
-                      setLoading(false)
-                    }}
+                    onClick={() => sendMessage(q)}
                     className="px-4 py-2 rounded-xl bg-gold/10 border border-gold/20 text-sm text-gold font-medium font-sans hover:bg-gold/20 hover:border-gold/40 transition-all"
                   >
                     {q}
@@ -381,23 +412,7 @@ export default function Chatbot() {
                   {quickQ.map((q) => (
                     <button
                       key={q}
-                      onClick={async () => {
-                        setMessages((prev) => [...prev, { role: 'user', content: q }])
-                        setLoading(true)
-                        try {
-                          const history = messages.slice(-10)
-                          const res = await fetch('/api/chat', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ message: q, history }),
-                          })
-                          const json = await res.json()
-                          setMessages((prev) => [...prev, { role: 'assistant', content: json.reply || "I'm not sure. Email hello@pinkmanx.vip." }])
-                        } catch {
-                          setMessages((prev) => [...prev, { role: 'assistant', content: "Network issue. Try again or email hello@pinkmanx.vip." }])
-                        }
-                        setLoading(false)
-                      }}
+                      onClick={() => sendMessage(q)}
                       className="px-3 py-1.5 rounded-xl bg-gold/5 border border-gold/15 text-xs text-gold font-medium font-sans hover:bg-gold/15 hover:border-gold/30 transition-all text-left"
                     >
                       {q}
