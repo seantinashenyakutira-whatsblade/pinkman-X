@@ -16,6 +16,7 @@ import FAQ from './components/sections/FAQ'
 import FoundingWaitlist from './components/sections/FoundingWaitlist'
 import Footer from './components/sections/Footer'
 import Toast from './components/ui/Toast'
+import Chatbot from './components/chat/Chatbot'
 
 export default function App() {
   const [toast, setToast] = useState({ visible: false, message: '' })
@@ -59,6 +60,7 @@ export default function App() {
       </main>
       <Footer />
       <Toast visible={toast.visible} message={toast.message} onClose={hideToast} />
+      <Chatbot />
     </div>
   )
 }
