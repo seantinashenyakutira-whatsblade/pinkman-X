@@ -5,7 +5,6 @@ import Button from '../ui/Button'
 import Badge from '../ui/Badge'
 import ScrollLink from '../ui/ScrollLink'
 import SocialIcons from '../ui/SocialIcons'
-import { submitWaitlist } from '../../lib/supabase'
 
 const expOptions = ['Beginner', 'Intermediate', 'Advanced', 'Professional']
 const intOptions = ['Learning', 'AI Analysis', 'Trading Automation', 'Signals', 'Prop Firm Support', 'All Features']
@@ -16,12 +15,6 @@ export default function Hero() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [msg, setMsg] = useState('')
 
-  useEffect(() => {
-    if (status !== 'success') return
-    const t = setTimeout(() => navigate('/blog'), 5000)
-    return () => clearTimeout(t)
-  }, [status, navigate])
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     if (!f.full_name.trim()) { setStatus('error'); setMsg('Full name is required.'); return }
@@ -30,10 +23,37 @@ export default function Hero() {
     if (!f.experience_level) { setStatus('error'); setMsg('Select your experience level.'); return }
     if (!f.interest) { setStatus('error'); setMsg('Select your main interest.'); return }
     setStatus('loading'); setMsg('')
-    const r = await submitWaitlist({ full_name: f.full_name.trim(), email: f.email.trim().toLowerCase(), whatsapp: f.whatsapp.trim(), experience_level: f.experience_level, interest: f.interest, marketing_consent: f.marketing_consent })
-    if (r.error) { setStatus('error'); setMsg(r.error.message) }
-    else { setStatus('success'); setMsg(`You're on the list, ${f.full_name.split(' ')[0]}!`) }
+    try {
+      const res = await fetch('/api/initiate-signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          full_name: f.full_name.trim(),
+          email: f.email.trim().toLowerCase(),
+          whatsapp: f.whatsapp.trim(),
+          experience_level: f.experience_level,
+          interest: f.interest,
+          marketing_consent: f.marketing_consent,
+        }),
+      })
+      const json = await res.json()
+      if (json.error) { setStatus('error'); setMsg(json.error); return }
+      setStatus('success')
+      if (json.message === 'already_registered') {
+        setMsg(`You're already on the waitlist, ${f.full_name.split(' ')[0]}! We'll be in touch.`)
+      } else {
+        setMsg(`Check ${f.email} to verify your email and secure your spot!`)
+      }
+    } catch {
+      setStatus('error'); setMsg('Network issue. Try again or email hello@pinkmanx.vip.')
+    }
   }
+
+  useEffect(() => {
+    if (status !== 'success') return
+    const t = setTimeout(() => navigate('/blog'), 5000)
+    return () => clearTimeout(t)
+  }, [status, navigate])
 
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-16 px-4 overflow-hidden">
