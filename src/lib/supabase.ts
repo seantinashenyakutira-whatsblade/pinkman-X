@@ -42,5 +42,13 @@ export async function submitWaitlist(data: {
     return { error }
   }
 
+  // Fire welcome email (non-blocking)
+  try {
+    const { sendWelcomeEmail } = await import('./emailAutomation')
+    sendWelcomeEmail(data.email, data.full_name.split(' ')[0])
+  } catch {
+    // email automation is optional — never block the signup
+  }
+
   return { error: null }
 }

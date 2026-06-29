@@ -1,5 +1,7 @@
 # Pinkman X — Waitlist Management Guide
 
+**Supabase Project:** https://supabase.com/dashboard/project/ujsaljvcywzgzdpoqolu
+
 ## Table of Contents
 1. Viewing Signups in Supabase
 2. Exporting CSV
