@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import Button from './ui/Button'
 import ScrollLink from './ui/ScrollLink'
@@ -23,6 +24,9 @@ export default function Header() {
           <span className="font-bold text-white text-sm">Pinkman X</span>
         </a>
         <nav className="hidden md:flex items-center gap-6">
+          <Link to="/blog" className="text-sm text-muted-light hover:text-gold transition-colors font-semibold">
+            Blog
+          </Link>
           {['Features', 'Strategies', 'Pricing', 'FAQ'].map((l) => (
             <ScrollLink key={l} href={`#${l.toLowerCase()}`} className="text-sm text-muted-light hover:text-white transition-colors">
               {l}
@@ -36,9 +40,12 @@ export default function Header() {
           {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
-      <div className={`md:hidden transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-80' : 'max-h-0'}`}>
-        <div className="px-4 py-4 bg-dark-900/95 backdrop-blur-xl border-t border-border/30 space-y-3">
-          {['Features', 'Strategies', 'Pricing', 'FAQ'].map((l) => (
+        <div className={`md:hidden transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-96' : 'max-h-0'}`}>
+          <div className="px-4 py-4 bg-dark-900/95 backdrop-blur-xl border-t border-border/30 space-y-3">
+            <Link to="/blog" className="block text-sm text-gold font-semibold py-1" onClick={() => setMenuOpen(false)}>
+              Blog
+            </Link>
+            {['Features', 'Strategies', 'Pricing', 'FAQ'].map((l) => (
             <ScrollLink key={l} href={`#${l.toLowerCase()}`} className="block text-sm text-muted-light hover:text-white py-1" onClick={() => setMenuOpen(false)}>
               {l}
             </ScrollLink>

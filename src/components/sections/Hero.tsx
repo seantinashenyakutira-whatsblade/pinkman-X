@@ -3,6 +3,7 @@ import { Play, Check } from 'lucide-react'
 import Button from '../ui/Button'
 import Badge from '../ui/Badge'
 import ScrollLink from '../ui/ScrollLink'
+import SocialIcons from '../ui/SocialIcons'
 import { submitWaitlist } from '../../lib/supabase'
 
 const expOptions = ['Beginner', 'Intermediate', 'Advanced', 'Professional']
@@ -74,6 +75,7 @@ export default function Hero() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                <SocialIcons />
                 <div className="text-center mb-2">
                   <p className="text-lg font-bold text-white">Reserve Your Spot</p>
                 </div>
