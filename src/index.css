@@ -37,6 +37,9 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
