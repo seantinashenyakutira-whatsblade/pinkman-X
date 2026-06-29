@@ -1,13 +1,62 @@
 import { useState, useEffect, useRef, type FormEvent, useCallback } from 'react'
-import { MessageCircle, X, Send, Bot, User, GripHorizontal } from 'lucide-react'
+import { MessageCircle, X, Send, Bot, User, GripHorizontal, Maximize2, Minimize2 } from 'lucide-react'
 
 interface Msg {
   role: 'user' | 'assistant'
   content: string
 }
 
+function formatContent(text: string) {
+  const lines = text.split('\n')
+  return lines.map((line, i) => {
+    const trimmed = line.trim()
+    if (!trimmed) return <br key={i} />
+
+    if (/^###\s(.+)/.test(trimmed)) {
+      return <h3 key={i} className="text-gold text-base font-bold mt-3 mb-1.5 font-sans">{trimmed.replace(/^###\s/, '')}</h3>
+    }
+    if (/^##\s(.+)/.test(trimmed)) {
+      return <h2 key={i} className="text-gold text-lg font-black mt-4 mb-2 font-sans">{trimmed.replace(/^##\s/, '')}</h2>
+    }
+    if (/^#\s(.+)/.test(trimmed)) {
+      return <h1 key={i} className="text-gold-light text-xl font-black mt-4 mb-2 font-sans">{trimmed.replace(/^#\s/, '')}</h1>
+    }
+    if (/^\*\*(.+)\*\*$/.test(trimmed)) {
+      return <p key={i} className="text-white font-bold font-sans">{trimmed.replace(/^\*\*(.+)\*\*$/, '$1')}</p>
+    }
+    if (/^\*(.+)\*$/.test(trimmed)) {
+      return <p key={i} className="italic text-white/90 font-cursive">{trimmed.replace(/^\*(.+)\*$/, '$1')}</p>
+    }
+    if (/^-\s(.+)/.test(trimmed)) {
+      return (
+        <div key={i} className="flex items-start gap-2 text-sm text-white/80 font-sans ml-1 mb-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-gold mt-1.5 shrink-0" />
+          <span>{trimmed.replace(/^-\s/, '')}</span>
+        </div>
+      )
+    }
+    if (/^\d+[.)]\s(.+)/.test(trimmed)) {
+      return (
+        <div key={i} className="flex items-start gap-2 text-sm text-white/80 font-sans ml-1 mb-1">
+          <span className="text-gold text-xs font-bold mt-0.5 shrink-0">{trimmed.match(/^\d+[.)]/)?.[0]}</span>
+          <span>{trimmed.replace(/^\d+[.)]\s/, '')}</span>
+        </div>
+      )
+    }
+
+    const rich = line
+      .replace(/\*\*(.+?)\*\*/g, '<strong class="text-white font-bold">$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em class="italic font-cursive text-white/90">$1</em>')
+
+    return (
+      <p key={i} className="text-sm text-white/80 leading-relaxed font-sans mb-1" dangerouslySetInnerHTML={{ __html: rich }} />
+    )
+  })
+}
+
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
+  const [maximized, setMaximized] = useState(false)
   const [showPopup, setShowPopup] = useState(true)
   const [messages, setMessages] = useState<Msg[]>([])
   const [input, setInput] = useState('')
@@ -106,6 +155,14 @@ export default function Chatbot() {
     }
   }, [clamp])
 
+  const toggleMaximize = () => {
+    setMaximized((m) => !m)
+    if (maximized) {
+      posRef.current = { x: window.innerWidth - 80, y: window.innerHeight - 80 }
+      setPos({ x: window.innerWidth - 80, y: window.innerHeight - 80 })
+    }
+  }
+
   return (
     <div
       className="fixed z-50 flex flex-col items-end"
@@ -121,7 +178,7 @@ export default function Chatbot() {
             >
               <X className="w-3 h-3 text-muted-light" />
             </button>
-            <p className="text-sm text-white font-medium whitespace-nowrap">Heyy, ask me anything about Pinkman X 🤖</p>
+            <p className="text-sm text-white font-medium whitespace-nowrap font-sans">Heyy, ask me anything about Pinkman X 🤖</p>
           </div>
           <div className="w-3 h-3 bg-black/80 border-r border-b border-gold/30 rotate-45 -mt-1.5 mr-5 ml-auto" />
         </div>
@@ -129,60 +186,69 @@ export default function Chatbot() {
 
       {/* Chat window */}
       {open && (
-        <div className="w-[340px] sm:w-[380px] h-[480px] rounded-2xl bg-black/80 backdrop-blur-xl border border-gold/20 shadow-[0_0_40px_rgba(212,175,55,0.1)] flex flex-col overflow-hidden animate-fade-in mb-3">
+        <div className={`rounded-2xl bg-black/80 backdrop-blur-xl border border-gold/20 shadow-[0_0_40px_rgba(212,175,55,0.1)] flex flex-col overflow-hidden animate-fade-in mb-3 transition-all duration-300 ${maximized ? 'w-[95vw] sm:w-[600px] h-[85vh] max-h-[800px]' : 'w-[340px] sm:w-[380px] h-[480px]'}`}>
           <div className="flex items-center justify-between px-4 py-3 border-b border-gold/10 shrink-0">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center">
                 <Bot className="w-4 h-4 text-gold" />
               </div>
               <div>
-                <p className="text-sm font-bold text-white">Pinkman X AI</p>
-                <p className="text-[10px] text-emerald-400">Online</p>
+                <p className="text-sm font-bold text-white font-sans">Pinkman X AI</p>
+                <p className="text-[10px] text-emerald-400 font-sans">Online</p>
               </div>
             </div>
             <div className="flex items-center gap-1 chat-ignore-drag">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center text-muted-light cursor-grab active:cursor-grabbing">
                 <GripHorizontal className="w-4 h-4" />
               </div>
+              <button onClick={toggleMaximize} className="w-7 h-7 rounded-lg bg-black/60 border border-gold/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+                {maximized ? <Minimize2 className="w-4 h-4 text-muted-light" /> : <Maximize2 className="w-4 h-4 text-muted-light" />}
+              </button>
               <button onClick={() => setOpen(false)} className="w-7 h-7 rounded-lg bg-black/60 border border-gold/10 flex items-center justify-center hover:bg-white/5 transition-colors">
                 <X className="w-4 h-4 text-muted-light" />
               </button>
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 chat-ignore-drag">
+          <div className={`flex-1 overflow-y-auto chat-ignore-drag ${maximized ? 'p-5' : 'p-4'}`}>
             {messages.length === 0 && (
-              <div className="text-center py-6">
+              <div className={`text-center ${maximized ? 'py-12' : 'py-6'}`}>
                 <Bot className="w-10 h-10 text-gold/30 mx-auto mb-3" />
-                <p className="text-sm text-muted-light font-medium">Ask me anything about Pinkman X!</p>
-                <p className="text-xs text-muted mt-1">Pricing, features, launch date, anything.</p>
+                <p className="text-sm text-muted-light font-medium font-sans">Ask me anything about Pinkman X!</p>
+                <p className="text-xs text-muted mt-1 font-sans">Pricing, features, launch date, anything.</p>
               </div>
             )}
-            {messages.map((m, i) => (
-              <div key={i} className={`flex items-start gap-2.5 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                <div className={`w-7 h-7 rounded-lg shrink-0 flex items-center justify-center ${m.role === 'user' ? 'bg-gold/10 border border-gold/20' : 'bg-amber/10 border border-amber/20'}`}>
-                  {m.role === 'user' ? <User className="w-3.5 h-3.5 text-gold" /> : <Bot className="w-3.5 h-3.5 text-amber" />}
-                </div>
-                <div className={`max-w-[75%] px-3 py-2 rounded-xl text-sm leading-relaxed ${m.role === 'user' ? 'bg-gold/10 border border-gold/20 text-white' : 'bg-black/60 border border-gold/10 text-white/80'}`}>
-                  {m.content}
-                </div>
-              </div>
-            ))}
-            {loading && (
-              <div className="flex items-start gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-amber/10 border border-amber/20 flex items-center justify-center shrink-0">
-                  <Bot className="w-3.5 h-3.5 text-amber" />
-                </div>
-                <div className="px-3 py-2 rounded-xl bg-black/60 border border-gold/10">
-                  <div className="flex gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-muted animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-muted animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-1.5 h-1.5 rounded-full bg-muted animate-bounce" style={{ animationDelay: '300ms' }} />
+            <div className="space-y-4">
+              {messages.map((m, i) => (
+                <div key={i} className={`flex items-start gap-2.5 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
+                  <div className={`w-7 h-7 rounded-lg shrink-0 flex items-center justify-center mt-0.5 ${m.role === 'user' ? 'bg-gold/10 border border-gold/20' : 'bg-amber/10 border border-amber/20'}`}>
+                    {m.role === 'user' ? <User className="w-3.5 h-3.5 text-gold" /> : <Bot className="w-3.5 h-3.5 text-amber" />}
+                  </div>
+                  <div className={`max-w-[80%] px-3.5 py-2.5 rounded-xl ${m.role === 'user' ? 'bg-gold/10 border border-gold/20' : 'bg-black/60 border border-gold/10'}`}>
+                    {m.role === 'user' ? (
+                      <p className="text-sm text-white font-sans">{m.content}</p>
+                    ) : (
+                      <div className="space-y-0.5">{formatContent(m.content)}</div>
+                    )}
                   </div>
                 </div>
-              </div>
-            )}
-            <div ref={bottomRef} />
+              ))}
+              {loading && (
+                <div className="flex items-start gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-amber/10 border border-amber/20 flex items-center justify-center shrink-0">
+                    <Bot className="w-3.5 h-3.5 text-amber" />
+                  </div>
+                  <div className="px-3.5 py-3 rounded-xl bg-black/60 border border-gold/10">
+                    <div className="flex gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-gold/60 animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <span className="w-2 h-2 rounded-full bg-gold/60 animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <span className="w-2 h-2 rounded-full bg-gold/60 animate-bounce" style={{ animationDelay: '300ms' }} />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={bottomRef} />
+            </div>
           </div>
 
           <form onSubmit={handleSend} className="p-3 border-t border-gold/10 shrink-0 flex items-center gap-2 chat-ignore-drag">
@@ -190,7 +256,7 @@ export default function Chatbot() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about Pinkman X..."
-              className="flex-1 px-3 py-2 rounded-lg bg-black/60 border border-gold/15 text-white text-sm placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all"
+              className="flex-1 px-3 py-2.5 rounded-lg bg-black/60 border border-gold/15 text-white text-sm placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-gold/25 focus:border-gold/40 transition-all font-sans"
             />
             <button
               type="submit"
