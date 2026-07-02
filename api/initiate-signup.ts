@@ -9,7 +9,8 @@ function getBody(req: IncomingMessage): Promise<string> {
 }
 
 async function sendVerificationEmail(
-  resendKey: string, to: string, token: string, fullName: string, baseUrl: string
+  resendKey: string, to: string, token: string, fullName: string, baseUrl: string,
+  supabaseUrl?: string, supabaseKey?: string
 ): Promise<boolean> {
   try {
     const verifyLink = `${baseUrl}/api/confirm-signup?token=${token}`
@@ -31,8 +32,25 @@ async function sendVerificationEmail(
       headers: { Authorization: `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ from: 'Pinkman X <hello@pinkman.vip>', to, subject: 'Verify your email — Pinkman X Waitlist', html }),
     })
+    if (!res.ok) {
+      const errText = await res.text()
+      console.error('[Resend] Failed to send verification:', res.status, errText)
+      // Log failure to email_logs
+      if (supabaseUrl && supabaseKey) {
+        try {
+          await fetch(`${supabaseUrl}/rest/v1/email_logs`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
+            body: JSON.stringify({ recipient_email: to, email_type: 'welcome', status: 'failed', error_message: `Resend ${res.status}: ${errText.slice(0, 200)}` }),
+          })
+        } catch {}
+      }
+    }
     return res.ok
-  } catch { return false }
+  } catch (err) {
+    console.error('[Resend] Exception:', err)
+    return false
+  }
 }
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
@@ -86,7 +104,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         body: JSON.stringify({ verification_token: token, status: 'pending_verification' }),
       })
       if (RESEND_API_KEY) {
-        await sendVerificationEmail(RESEND_API_KEY, normalEmail, token, user.full_name, BASE_URL)
+        await sendVerificationEmail(RESEND_API_KEY, normalEmail, token, user.full_name, BASE_URL, SUPABASE_URL, SUPABASE_ANON_KEY)
       }
       res.writeHead(200, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ success: true, message: 'already_signed_up', email: normalEmail }))
@@ -123,7 +141,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
 
     let emailSent = false
     if (RESEND_API_KEY) {
-      emailSent = await sendVerificationEmail(RESEND_API_KEY, normalEmail, token, full_name, BASE_URL)
+      emailSent = await sendVerificationEmail(RESEND_API_KEY, normalEmail, token, full_name, BASE_URL, SUPABASE_URL, SUPABASE_ANON_KEY)
     }
 
     res.writeHead(200, { 'Content-Type': 'application/json' })

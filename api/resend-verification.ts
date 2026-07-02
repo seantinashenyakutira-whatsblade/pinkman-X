@@ -87,6 +87,18 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         body: JSON.stringify({ from: 'Pinkman X <hello@pinkman.vip>', to: normalEmail, subject: 'Verify your email — Pinkman X Waitlist', html }),
       })
       emailSent = emailRes.ok
+      if (!emailRes.ok) {
+        const errText = await emailRes.text()
+        console.error('[Resend] Resend failed:', emailRes.status, errText)
+        // Log failure to email_logs
+        try {
+          await fetch(`${SUPABASE_URL}/rest/v1/email_logs`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
+            body: JSON.stringify({ recipient_email: normalEmail, email_type: 'welcome', status: 'failed', error_message: `Resend ${emailRes.status}: ${errText.slice(0, 200)}` }),
+          })
+        } catch {}
+      }
     }
 
     res.writeHead(200, { 'Content-Type': 'application/json' })

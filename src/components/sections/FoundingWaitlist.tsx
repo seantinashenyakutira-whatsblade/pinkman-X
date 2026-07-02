@@ -78,6 +78,10 @@ export default function FoundingWaitlist() {
         return
       }
 
+      if (json.email_sent === false) {
+        setStatus('error'); setMsg('Verification email failed to send. Contact hello@pinkman.vip for help.')
+        return
+      }
       localStorage.setItem(PENDING_KEY, json.email)
       setVerificationEmail(json.email)
     } catch {
