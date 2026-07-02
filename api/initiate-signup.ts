@@ -20,9 +20,9 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   const RESEND_API_KEY = process.env.RESEND_API_KEY
   const BASE_URL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:5173'
 
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY || !RESEND_API_KEY) {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     res.writeHead(500, { 'Content-Type': 'application/json' })
-    res.end(JSON.stringify({ error: 'Missing environment variables' }))
+    res.end(JSON.stringify({ error: 'Missing Supabase environment variables' }))
     return
   }
 
@@ -75,11 +75,12 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
       return
     }
 
-    // Send verification email via Resend
-    const verifyLink = `${BASE_URL}/api/confirm-signup?token=${token}`
-    const firstName = full_name.split(' ')[0]
+    // Send verification email via Resend (optional — skip if key not set)
+    if (RESEND_API_KEY) {
+      const verifyLink = `${BASE_URL}/api/confirm-signup?token=${token}`
+      const firstName = full_name.split(' ')[0]
 
-    const html = `<!doctype html>
+      const html = `<!doctype html>
 <html><body style="margin:0;padding:0;background:#050508;font-family:Inter,system-ui,sans-serif">
 <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:40px 16px">
 <table width="480" cellpadding="0" cellspacing="0" style="background:#0a0a12;border-radius:16px;border:1px solid rgba(212,175,55,0.15)">
@@ -92,19 +93,20 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
 </td></tr></table>
 </td></tr></table></body></html>`
 
-    await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: 'Pinkman X <verify@pinkmanx.app>',
-        to: email,
-        subject: 'Verify your email — Pinkman X Waitlist',
-        html,
-      }),
-    })
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'Pinkman X <verify@pinkmanx.app>',
+          to: email,
+          subject: 'Verify your email — Pinkman X Waitlist',
+          html,
+        }),
+      })
+    }
 
     res.writeHead(200, { 'Content-Type': 'application/json' })
     res.end(JSON.stringify({ success: true, message: 'verification_sent' }))
