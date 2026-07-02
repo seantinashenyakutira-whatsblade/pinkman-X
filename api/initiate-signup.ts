@@ -100,7 +100,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'Pinkman X <verify@pinkmanx.app>',
+          from: 'Pinkman X <hello@pinkman.vip>',
           to: email,
           subject: 'Verify your email — Pinkman X Waitlist',
           html,
