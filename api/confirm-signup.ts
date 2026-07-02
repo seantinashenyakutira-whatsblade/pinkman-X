@@ -110,6 +110,6 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     }
   } catch {}
 
-  res.writeHead(302, { Location: '/?verified=true' })
+  res.writeHead(302, { Location: '/social-verify' })
   res.end()
 }

@@ -18,7 +18,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   const SUPABASE_URL = process.env.VITE_SUPABASE_URL
   const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY
   const RESEND_API_KEY = process.env.RESEND_API_KEY
-  const BASE_URL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:5173'
+  const BASE_URL = process.env.SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:5173')
 
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     res.writeHead(500, { 'Content-Type': 'application/json' })
