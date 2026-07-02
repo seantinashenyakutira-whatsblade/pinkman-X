@@ -39,7 +39,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: from || 'Pinkman X <hello@pinkman.vip>',
+        from: from || 'Pinkman X <hello@pinkmanx.vip>',
         to,
         subject,
         html,

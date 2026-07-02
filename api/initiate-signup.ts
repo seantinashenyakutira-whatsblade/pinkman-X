@@ -30,7 +30,7 @@ async function sendVerificationEmail(
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from: 'Pinkman X <hello@pinkman.vip>', to, subject: 'Verify your email — Pinkman X Waitlist', html }),
+      body: JSON.stringify({ from: 'Pinkman X <hello@pinkmanx.vip>', to, subject: 'Verify your email — Pinkman X Waitlist', html }),
     })
     if (!res.ok) {
       const errText = await res.text()

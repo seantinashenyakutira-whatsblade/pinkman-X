@@ -84,7 +84,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
       const emailRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ from: 'Pinkman X <hello@pinkman.vip>', to: normalEmail, subject: 'Verify your email — Pinkman X Waitlist', html }),
+        body: JSON.stringify({ from: 'Pinkman X <hello@pinkmanx.vip>', to: normalEmail, subject: 'Verify your email — Pinkman X Waitlist', html }),
       })
       emailSent = emailRes.ok
       if (!emailRes.ok) {
