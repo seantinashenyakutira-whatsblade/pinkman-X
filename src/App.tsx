@@ -24,15 +24,6 @@ export default function App() {
   const hideToast = useCallback(() => setToast({ visible: false, message: '' }), [])
 
   useEffect(() => {
-    // Show toast if redirected from email verification
-    const params = new URLSearchParams(window.location.search)
-    if (params.get('verified') === 'true') {
-      showToast('Email verified — Welcome to Pinkman X!')
-      window.history.replaceState({}, '', window.location.pathname)
-    }
-  }, [showToast])
-
-  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

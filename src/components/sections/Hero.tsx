@@ -1,19 +1,51 @@
 import { useState, useEffect, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Play, Check } from 'lucide-react'
+import { Play } from 'lucide-react'
 import Button from '../ui/Button'
 import Badge from '../ui/Badge'
 import ScrollLink from '../ui/ScrollLink'
 import SocialIcons from '../ui/SocialIcons'
+import VerificationPending from '../ui/VerificationPending'
 
 const expOptions = ['Beginner', 'Intermediate', 'Advanced', 'Professional']
 const intOptions = ['Learning', 'AI Analysis', 'Trading Automation', 'Signals', 'Prop Firm Support', 'All Features']
 
+const PENDING_KEY = 'pinkman_pending_email'
+
 export default function Hero() {
   const navigate = useNavigate()
   const [f, setF] = useState({ full_name: '', email: '', whatsapp: '', experience_level: '', interest: '', marketing_consent: false })
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle')
   const [msg, setMsg] = useState('')
+  const [verificationEmail, setVerificationEmail] = useState<string | null>(
+    () => localStorage.getItem(PENDING_KEY)
+  )
+
+  // Check if ?verified=true on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('verified') === 'true') {
+      localStorage.removeItem(PENDING_KEY)
+      setVerificationEmail(null)
+      window.history.replaceState({}, '', window.location.pathname)
+      navigate('/blog?welcome=true')
+    }
+  }, [navigate])
+
+  // If coming back with a pending email, check if now verified
+  useEffect(() => {
+    if (!verificationEmail) return
+    fetch(`/api/check-verification?email=${encodeURIComponent(verificationEmail)}`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.verified) {
+          localStorage.removeItem(PENDING_KEY)
+          setVerificationEmail(null)
+          navigate('/blog?welcome=true')
+        }
+      })
+      .catch(() => {})
+  }, [verificationEmail, navigate])
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -38,22 +70,36 @@ export default function Hero() {
       })
       const json = await res.json()
       if (json.error) { setStatus('error'); setMsg(json.error); return }
-      setStatus('success')
-      if (json.message === 'already_registered') {
-        setMsg(`You're already on the waitlist, ${f.full_name.split(' ')[0]}! We'll be in touch.`)
-      } else {
-        setMsg(`Check ${f.email} to verify your email and secure your spot!`)
+      setStatus('idle')
+
+      if (json.message === 'already_verified') {
+        localStorage.removeItem(PENDING_KEY)
+        navigate('/blog?welcome=true')
+        return
       }
+
+      // verification_sent or already_signed_up
+      localStorage.setItem(PENDING_KEY, json.email)
+      setVerificationEmail(json.email)
     } catch {
-      setStatus('error'); setMsg('Network issue. Try again or email hello@pinkmanx.vip.')
+      setStatus('error'); setMsg('Network issue. Try again or email hello@pinkman.vip.')
     }
   }
 
-  useEffect(() => {
-    if (status !== 'success') return
-    const t = setTimeout(() => navigate('/blog'), 5000)
-    return () => clearTimeout(t)
-  }, [status, navigate])
+  const handleResend = async () => {
+    if (!verificationEmail) return
+    await fetch('/api/resend-verification', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: verificationEmail }),
+    })
+  }
+
+  const handleVerified = () => {
+    localStorage.removeItem(PENDING_KEY)
+    setVerificationEmail(null)
+    navigate('/blog?welcome=true')
+  }
 
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-16 px-4 overflow-hidden">
@@ -91,16 +137,14 @@ export default function Hero() {
           <p className="text-xs text-muted italic reveal visible reveal-delay-3">First 10 waitlist members receive 2 months of Pinkman X Pro free at launch.</p>
         </div>
 
-          <div className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto reveal visible reveal-delay-2">
+        <div className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto reveal visible reveal-delay-2">
           <div className="rounded-2xl bg-black/60 backdrop-blur-xl border border-gold/10 p-6 sm:p-8 card-hover glow-gold">
-            {status === 'success' ? (
-              <div className="text-center py-6">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
-                  <Check className="w-7 h-7 text-gold" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-1">Welcome!</h3>
-                <p className="text-sm text-muted-light">{msg}</p>
-              </div>
+            {verificationEmail ? (
+              <VerificationPending
+                email={verificationEmail}
+                onResend={handleResend}
+                onVerified={handleVerified}
+              />
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <SocialIcons />
